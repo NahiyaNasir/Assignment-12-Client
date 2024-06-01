@@ -4,7 +4,7 @@ import { AuthContext } from "../../AuthProvider/AuthProbider";
 
 const NavBar = () => {
   const { user, logOut } = useContext(AuthContext);
-  // console.log(user.photoURL)
+  console.log(user.photoURL)
   const handleLogOut = () => {
     logOut()
       .then((result) => {
@@ -166,8 +166,8 @@ const NavBar = () => {
       <div className="navbar-end">
         {user ? (
           <>
-             <div className="w-16 rounded-full">
-    <Link>
+             <div className="w-14 rounded-full mt-4 ">
+    <Link to="/myProfile">
     <img alt="" src={user?.photoURL }/></Link>
         </div>
             <button className="btn btn-active btn-link" onClick={handleLogOut}>

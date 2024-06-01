@@ -22,7 +22,7 @@ const Register = () => {
       console.log(result.user)
       updateUser(data.name, data.photoURL)
      .then(()=>{
-      console.log(data.name,data.photoURL)
+      // console.log(data.name,data.photoURL)
         reset()
         Swal.fire({
           title: "User Created.",
