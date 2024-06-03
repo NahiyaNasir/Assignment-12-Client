@@ -4,10 +4,12 @@ import { AuthContext } from "../AuthProvider/AuthProbider";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import useAxiosCommon from "../../Hooks/useAxiosCommon";
 // const image_hosting_key=import.meta.env. VITE_IMAGE_HOSTING_API
 // const image_hosting_api=`https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 const Register = () => {
   const navigate=useNavigate()
+  const axiosCommon=useAxiosCommon()
   const { createUser, updateUser,signInWithGoogle } = useContext(AuthContext);
   const {
     register,
@@ -22,17 +24,30 @@ const Register = () => {
       console.log(result.user)
       updateUser(data.name, data.photoURL)
      .then(()=>{
-      // console.log(data.name,data.photoURL)
-        reset()
-        Swal.fire({
-          title: "User Created.",
-          width: 600,
-          padding: "3em",
-          color: "#716add",
-       
+      const userInfo={
+        name:data.name,
+        email:data.email,
+        profile_photo:data.photoURL
+      }
+       axiosCommon.post('/users',userInfo)
+       .then(res=>{
+        console.log(res.data)
+        if(res.data.insertedId){
+          reset()
+          Swal.fire({
+            title: "User Created.",
+            width: 600,
+            padding: "3em",
+            color: "#716add",
          
-        });
-
+           
+          });
+  
+        }
+       })
+      // console.log(data.name,data.photoURL)
+       
+      
      })
     })
   };
@@ -41,10 +56,17 @@ const Register = () => {
     signInWithGoogle()
       .then((result) => {
         console.log(result.user);
-        navigate( location?.state?  location.state :'/')
-       
-        // toast.success('user Login Successfully with Google') 
-        Swal.fire({
+        const userInfo={
+          name: result.user?.displayName,
+          email:result.user?.email,
+          profile_photo:result.user?.photoURL
+        }
+        axiosCommon.post('/users',userInfo)
+        .then(res=>{
+         console.log(res.data)
+         if(res.data.insertedId){
+          reset()
+          Swal.fire({
             title: "User Login Successfully with Google",
             showClass: {
               popup: `
@@ -61,6 +83,13 @@ const Register = () => {
               `
             }
           });
+          navigate( location?.state?  location.state :'/')
+         }
+        })
+     
+       
+        
+       
       })
       .catch((error) => toast.error(error));
 }

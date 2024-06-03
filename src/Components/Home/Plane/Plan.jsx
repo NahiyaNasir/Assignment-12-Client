@@ -28,7 +28,9 @@ const Plan = () => {
          
 
           <div className="card-actions justify-end">
-            <button className="btn">Buy Now</button>
+          <Link to="/subscribePage">
+          <button className="btn rounded-full bg-teal-300"> Try free for 1 week </button>
+          </Link>
           </div>
         </div>
       </div>
@@ -39,7 +41,7 @@ const Plan = () => {
         </p>
         <br />
         <div className="card-body">
-          <h2 className="card-title justify-between">Premium Due!   <br /> $13.89</h2>
+          <h2 className="card-title justify-between">Premium !   <br /> $13.89</h2>
          <h2>Unlimited Article Access :</h2>
          <li>Unlimited access to all articles and archives on the website</li>
          <h2>Ad-Free Experience:</h2>
@@ -52,7 +54,7 @@ const Plan = () => {
 
           <div className="card-actions justify-end">
            <Link to="/subscribePage">
-           <button className="btn">Buy Now</button>
+           <button className=" bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 ... btn rounded-full">Get Premium </button>
            </Link>
           </div>
         </div>

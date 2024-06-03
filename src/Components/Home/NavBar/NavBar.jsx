@@ -128,7 +128,7 @@ const NavBar = () => {
             All Article
           </NavLink>
           <NavLink
-            to="/subscribe"
+            to="/subscribePage"
             className={({ isActive }) =>
               isActive ? " text-cyan-950 underline " : "font-mono  p-2 "
             }

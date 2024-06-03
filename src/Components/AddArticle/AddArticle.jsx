@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 
 import Select from "react-select";
@@ -6,12 +6,14 @@ import { RiArticleLine } from "react-icons/ri";
 import useAxiosCommon from "../../Hooks/useAxiosCommon";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { AuthContext } from "../AuthProvider/AuthProbider";
 
 const image_hosting_key=import.meta.env. VITE_IMAGE_HOSTING_API
 const image_hosting_api=`https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 const AddArticle = () => {
     const axiosCommon=useAxiosCommon()
     const axiosSecure=useAxiosSecure()
+     const {user}=useContext( AuthContext)
   const [selectedOption, setSelectedOption] = useState([]);
 //   console.log(" select", selectedOption);
 
@@ -44,7 +46,12 @@ const AddArticle = () => {
             description:data.desc,
             image:res.data.data.display_url,
             tags:data.tags.value,
-            publisher:data.publisher
+            publisher:data.publisher,
+            postedDate:new Date(),
+             author_name:user?.displayName,
+             author_email:user?.email,
+             author_photo:user?.photoURL
+            
         }
         console.log(addArticle)
         const article =await axiosSecure.post('/add-article',addArticle)
@@ -89,13 +96,13 @@ const AddArticle = () => {
               <option disabled selected>
                 select a publisher
               </option>
-              <option value="news">News</option>
-              <option value="sports">Sports</option>
-              <option value="entertainment">Entertainment</option>
-              <option value="tec">Technology</option>
-              <option value="style"> Lifestyle</option>
-              <option value="health"> Health</option>
-              <option value="sci"> Science</option>
+              <option value="news">The Daily Star</option>
+              <option value="sports">Prothom Alo</option>
+              <option value="entertainment">Bangladesh Pratidin</option>
+              <option value="tec">The Financial Express</option>
+              <option value="style"> Dhaka Tribune</option>
+              <option value="health"> Kaler Kantho</option>
+              <option value="sci"> New Age</option>
 
             </select>
           </label>

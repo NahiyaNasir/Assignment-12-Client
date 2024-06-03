@@ -6,6 +6,10 @@ import Login from "../Components/Pages/Login";
 import Register from "../Components/Pages/Register";
 import AddArticle from "../Components/AddArticle/AddArticle";
 import MyProfile from "../Components/MyProfile/MyProfile";
+import SubscriptionPage from "../Components/Pages/SubscriptionPage";
+import DashBoard from "../Components/DashBord/DashBoard";
+import AllUser from "../Components/DashBord/AllUser/AllUser";
+import AddPublisher from "../Components/DashBord/AddPublisher/AddPublisher";
 const router = createBrowserRouter([
     {
       path: "/",
@@ -26,6 +30,13 @@ const router = createBrowserRouter([
 
       },
         {
+          path:"/subscribePage",
+          element:<SubscriptionPage></SubscriptionPage>
+
+      },
+
+
+        {
             path:"/login",
             element:<Login></Login>
         },
@@ -36,5 +47,19 @@ const router = createBrowserRouter([
 
       ]
     },
+    {
+    path:"dashBoard",
+    element:<DashBoard></DashBoard>
+
+    },
+    {
+      path:"allUser",
+      element:<AllUser></AllUser>
+    },
+{
+  path:'addPublisher',
+  element:<AddPublisher></AddPublisher>
+
+}
   ]);
   export default router
