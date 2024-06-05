@@ -8,19 +8,19 @@ const AllUser = () => {
     queryKey: ["user"],
     queryFn: async () => {
       const res = await axiosSecure.get("/users");
-    //   console.log(res.data);
+      console.log(res.data);
       return res.data;
     },
   });
   if (isLoading)
     return (
-      <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-blue-600"></div>
+      <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-blue-600"></div>
     );
   const handleAdmin=(_id)=>{
     // console.log(_id)
     axiosSecure.patch(`/users/admin/${_id}`)
    .then(res=>{
-// console.log(res.data)
+console.log(res.data)
 if(res.data.modifiedCount>0){
     Swal.fire({
         position: "top-end",

@@ -1,15 +1,17 @@
 import { useForm } from "react-hook-form";
 import useAxiosCommon from "../../../Hooks/useAxiosCommon";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 const image_hosting_key=import.meta.env. VITE_IMAGE_HOSTING_API
 const image_hosting_api=`https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 const AddPublisher = () => {
      const axiosCommon=useAxiosCommon()
-  const { register, handleSubmit, reset } = useForm();
-
+  const { register, handleSubmit,reset} = useForm();
+const axiosSecure=useAxiosSecure()
   const onSubmit = async (data) => {
     console.log(data);
     const imageFile={image:data.image[0]}
-    // console.log(data);
+   
     const res= await axiosCommon.post(image_hosting_api,imageFile,{
         headers :{
             'content-type':'multipart/form-data'
@@ -17,7 +19,27 @@ const AddPublisher = () => {
       
     })
     console.log(res.data)
-  };
+    if(res.data.success){
+       const publisher_name={
+          name:data.publisher_name,
+          image:res.data.data.display_url,
+      
+    }
+    console.log(publisher_name)
+     const allPublisher=await axiosSecure.post("/all-publisher",publisher_name)
+    console.log(allPublisher)
+    if(allPublisher.data.insertedId){
+      reset()
+      Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "  Publisher Added",
+          showConfirmButton: false,
+          timer: 1500
+        });
+    }
+  }
+}
   return (
     <div className=" flex justify-center items-center my-10">
       <section className="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">

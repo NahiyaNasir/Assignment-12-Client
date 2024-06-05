@@ -10,56 +10,55 @@ import SubscriptionPage from "../Components/Pages/SubscriptionPage";
 import DashBoard from "../Components/DashBord/DashBoard";
 import AllUser from "../Components/DashBord/AllUser/AllUser";
 import AddPublisher from "../Components/DashBord/AddPublisher/AddPublisher";
+import AllArticle from "../Components/DashBord/AllArticle.jsx/AllArticle";
 const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Main></Main>,
-      errorElement: <ErrorPage/>,
-      children:[
-        {
-            path:"/",
-            element:<Home></Home>
-        },
-        {
-          path:"/addArticle",
-          element:<AddArticle></AddArticle>
+  {
+    path: "/",
+    element: <Main></Main>,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "/",
+        element: <Home></Home>,
       },
-        {
-          path:"/myProfile",
-          element:<MyProfile></MyProfile>
-
+      {
+        path: "/addArticle",
+        element: <AddArticle></AddArticle>,
       },
-        {
-          path:"/subscribePage",
-          element:<SubscriptionPage></SubscriptionPage>
-
+      {
+        path: "/myProfile",
+        element: <MyProfile></MyProfile>,
+      },
+      {
+        path: "/subscribePage",
+        element: <SubscriptionPage></SubscriptionPage>,
       },
 
-
-        {
-            path:"/login",
-            element:<Login></Login>
-        },
-        {
-            path:"/register",
-            element:<Register></Register>
-        }
-
-      ]
-    },
-    {
-    path:"dashBoard",
-    element:<DashBoard></DashBoard>
-
-    },
-    {
-      path:"allUser",
-      element:<AllUser></AllUser>
-    },
-{
-  path:'addPublisher',
-  element:<AddPublisher></AddPublisher>
-
-}
-  ]);
-  export default router
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
+      },
+    ],
+  },
+  {
+    path: "dashBoard",
+    element: <DashBoard></DashBoard>,
+  },
+  {
+    path: "allUser",
+    element: <AllUser></AllUser>,
+  },
+  {
+    path: "addPublisher",
+    element: <AddPublisher></AddPublisher>,
+  },
+  {
+    path: "/allArticles",
+    element: <AllArticle></AllArticle>,
+  },
+]);
+export default router;

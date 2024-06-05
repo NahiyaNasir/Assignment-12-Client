@@ -96,13 +96,13 @@ const AddArticle = () => {
               <option disabled selected>
                 select a publisher
               </option>
-              <option value="news">The Daily Star</option>
-              <option value="sports">Prothom Alo</option>
-              <option value="entertainment">Bangladesh Pratidin</option>
-              <option value="tec">The Financial Express</option>
-              <option value="style"> Dhaka Tribune</option>
-              <option value="health"> Kaler Kantho</option>
-              <option value="sci"> New Age</option>
+              <option value="daily star">The Daily Star</option>
+              <option value="Prothom">Prothom Alo</option>
+              <option value="bangladesh">Bangladesh Pratidin</option>
+              <option value="financial">The Financial Express</option>
+              <option value="dhaka"> Dhaka Tribune</option>
+              <option value="kakler_konto"> Kaler Kantho</option>
+              <option value="new_age"> New Age</option>
 
             </select>
           </label>

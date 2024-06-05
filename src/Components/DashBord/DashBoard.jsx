@@ -3,7 +3,7 @@ import { FaRegUser } from "react-icons/fa";
 import { MdOutlinePublishedWithChanges } from "react-icons/md"
 import { SlGraph } from "react-icons/sl";
 import { MdOutlineArticle } from "react-icons/md";
-const DashBoard = () => {
+const  DashBoard = () => {
   return (
     <div>
       <aside className="flex flex-col w-64 h-screen px-5 py-8 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
@@ -19,7 +19,7 @@ const DashBoard = () => {
                 href="#"
               >
               <SlGraph />
-                <Link to="/allUser">
+                <Link to="page">
                   <span className="mx-2 text-sm font-medium">DashBoardPage</span>
                 </Link>
               </a>
@@ -52,7 +52,7 @@ const DashBoard = () => {
                 href="#"
               >
             <MdOutlineArticle />
-                <Link to="/">
+                <Link to="/allArticles">
                   <span className="mx-2 text-sm font-medium">All Articles</span>
                 </Link>
               </a>

@@ -10,8 +10,8 @@ const SubscriptionPage = () => {
     { value: "10", label: "10 days",price:parseInt('$19.56') },
   
   ]
-  const handleSubmit=(value)=>{
-    console.log(value)
+  const handleSubmit=(price)=>{
+    console.log(price)
   }
   
     return (
@@ -31,7 +31,7 @@ const SubscriptionPage = () => {
 
       <p className="mb-5 text-red-600 font-bold"> !!!Remember If you Subscription Period  Over You Will Be Normal   User Like before </p>
 <Link to="">
-<button className="btn   my-20 btn-outline btn-error" onClick={()=>handleSubmit(subscriptionOptions.value)}>Subscribe</button>
+<button className="btn   my-20 btn-outline btn-error" onClick={()=>handleSubmit(subscriptionOptions.price)}>Subscribe</button>
 </Link>
     </div>
   </div>
