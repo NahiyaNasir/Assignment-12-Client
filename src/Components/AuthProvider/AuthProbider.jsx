@@ -1,20 +1,28 @@
 /* eslint-disable react/prop-types */
 
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
-import {  GoogleAuthProvider } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+  updateProfile,
+} from "firebase/auth";
+import { GoogleAuthProvider } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 
 import { toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import auth from "../../firebasecofig";
-
+import useAxiosCommon from "../../Hooks/useAxiosCommon";
 
 const googleProvider = new GoogleAuthProvider();
 
 export const AuthContext = createContext(null);
-const AuthProvider = ({children}) => {
-    const [user, setUser] = useState(null);
+const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
   const [loading, setaLoading] = useState(true);
+  const axiosCommon = useAxiosCommon();
   const createUser = (email, password) => {
     setaLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
@@ -27,12 +35,29 @@ const AuthProvider = ({children}) => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       // console.log("user details", currentUser);
       setUser(currentUser);
-      setaLoading(false);
+
+      if (currentUser) {
+        const userinfo = {
+          email: currentUser?.email,
+        };
+        axiosCommon.post("/jwt", userinfo).then((res) => {
+                // console.log(res.data)
+          if (res.data.token) {
+      
+            localStorage.setItem("access-token", res.data.token);
+            setaLoading(false);
+          }
+        });
+      }else{
+        localStorage.removeItem("access-token")
+        setaLoading(false);
+      }
+    
     });
     return () => {
       unSubscribe();
     };
-  }, []);
+  }, [axiosCommon]);
   const logOut = () => {
     setaLoading(true);
     return signOut(auth)
@@ -40,7 +65,7 @@ const AuthProvider = ({children}) => {
       .catch((error) => console.log(error));
   };
   const signIn = (email, password) => {
-    console.log(email, password);
+    // console.log(email, password);
     setaLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
@@ -48,7 +73,7 @@ const AuthProvider = ({children}) => {
     setaLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
- 
+
   const authInfo = {
     user,
     signIn,
@@ -56,13 +81,13 @@ const AuthProvider = ({children}) => {
     updateUser,
     logOut,
     signInWithGoogle,
-  
+
     loading,
   };
-    return (
-        <div>
-             <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
-        </div>
-    );
+  return (
+    <div>
+      <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
+    </div>
+  );
 };
 export default AuthProvider;

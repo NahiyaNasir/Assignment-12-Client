@@ -8,7 +8,7 @@ const AllUser = () => {
     queryKey: ["user"],
     queryFn: async () => {
       const res = await axiosSecure.get("/users");
-      console.log(res.data);
+      // console.log(res.data);
       return res.data;
     },
   });

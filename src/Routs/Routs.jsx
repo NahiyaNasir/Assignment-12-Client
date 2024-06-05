@@ -11,6 +11,7 @@ import DashBoard from "../Components/DashBord/DashBoard";
 import AllUser from "../Components/DashBord/AllUser/AllUser";
 import AddPublisher from "../Components/DashBord/AddPublisher/AddPublisher";
 import AllArticle from "../Components/DashBord/AllArticle.jsx/AllArticle";
+import ProtectedRoute from "../Components/Pages/ProtectedRoute/ProtectedRoute";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -23,15 +24,21 @@ const router = createBrowserRouter([
       },
       {
         path: "/addArticle",
-        element: <AddArticle></AddArticle>,
+        element: <ProtectedRoute><AddArticle></AddArticle></ProtectedRoute>,
       },
+      
+      {
+        path: "/all-Article",
+        element: <AllArticle></AllArticle>,
+      },
+
       {
         path: "/myProfile",
-        element: <MyProfile></MyProfile>,
+        element:<ProtectedRoute> <MyProfile></MyProfile></ProtectedRoute>,
       },
       {
         path: "/subscribePage",
-        element: <SubscriptionPage></SubscriptionPage>,
+        element:<ProtectedRoute> <SubscriptionPage></SubscriptionPage></ProtectedRoute>,
       },
 
       {

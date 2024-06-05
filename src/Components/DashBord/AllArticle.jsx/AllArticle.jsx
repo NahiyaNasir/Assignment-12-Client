@@ -4,13 +4,13 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { FcApproval } from "react-icons/fc";
 import { RiFileForbidLine } from "react-icons/ri";
 import { LuCrown } from "react-icons/lu";
-import Model from "../../Model/Model";
+
 import Swal from "sweetalert2";
-import { useState } from "react";
+
 
 const AllArticle = () => {
   const axiosSecure = useAxiosSecure();
-  const [declineReason, setDeclineReason] = useState('');
+
   const { data: allArticles = [], refetch } = useQuery({
     queryKey: ["allArticles"],
     queryFn: async () => {
@@ -19,7 +19,7 @@ const AllArticle = () => {
       return res.data;
     },
   });
-  const [isOpen, setIsOpen] = useState(false);
+  
 
   const handleDelete = (_id) => {
     // console.log(_id);
@@ -81,13 +81,12 @@ const AllArticle = () => {
   };
   const handleDecline = (_id) => {
     // console.log(_id);
-
-    axiosSecure.put(`/add-article/${_id}/decline`,{reason:declineReason}).then((res) => {
+  
+    axiosSecure.put(`/add-article/${_id}/decline`).then((res) => {
       // console.log(res.data);
       if (res.data.modifiedCount > 0) {
-        setIsOpen(false);
-        setDeclineReason('')
-        refetch()
+        
+        
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -98,6 +97,12 @@ const AllArticle = () => {
       }
     });
   };
+  const handleDeclineReason=(e)=>{
+   
+    const form = new FormData(e.currentTarget);
+    const reason= form.get('reason')
+    console.log(reason)
+  }
   return (
     <div>
       <section className="container px-4 mx-auto my-8">
@@ -224,14 +229,36 @@ const AllArticle = () => {
                                 <FcApproval className="text-xl" />
                               </button>
                             )}
-                            {article.status == "declined" ? (
-                              <Model
-                                isOpen={isOpen}
-                                setIsOpen={setIsOpen}
-                               
-                            
-                              ></Model>
-                            ) : (
+                            {article.status == "declined" ? 
+                        
+                         
+// model
+<>
+<button className="btn" onClick={()=>document.getElementById('my_modal_1').showModal()}>open modal</button>
+<dialog id="my_modal_1" className="modal">
+  <div className="modal-box">
+    <h1 className="text-xl font-bold">  Decline Reason</h1>
+   <form onSubmit={()=>handleDeclineReason()}>
+  <div className=" my-8 justify-center items-center flex">
+  <textarea
+           name="reason"
+              className="textarea textarea-accent h-24"
+              placeholder=""
+            ></textarea>
+     
+  </div>
+  <button className=" btn btn-outline"type="submit">Submit</button>
+   </form>
+    <div className="modal-action">
+      <form method="dialog">
+        {/* if there is a button in form, it will close the modal */}
+        <button className="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
+</>
+                             : (
                               <button
                                 className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500  hover:text-red-500 focus:outline-none"
                                 onClick={() => handleDecline(article._id)}

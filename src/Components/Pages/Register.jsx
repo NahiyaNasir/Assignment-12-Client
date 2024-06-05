@@ -44,6 +44,7 @@ const Register = () => {
           });
   
         }
+        navigate( location?.state?  location.state :'/')
        })
       // console.log(data.name,data.photoURL)
        

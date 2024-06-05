@@ -120,7 +120,7 @@ const NavBar = () => {
           </NavLink>
 
           <NavLink
-            to="/allArticle"
+            to="/all-Article"
             className={({ isActive }) =>
               isActive ? " text-cyan-950 underline " : "font-mono  p-2 "
             }
