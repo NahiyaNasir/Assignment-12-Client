@@ -18,11 +18,11 @@ const AddArticle = () => {
 //   console.log(" select", selectedOption);
 
   const options = [
-    { value: "news", label: "News" },
-    { value: "sports", label: "Sports" },
-    { value: "entertainment", label: "Entertainment" },
-    { value: "technology", label: "Technology" },
-    { value: "health", label: "Health" },
+    { value: "Politics", label: "Politics" },
+    { value: "Sports", label: "Sports" },
+    { value: "Entertainment", label: "Entertainment" },
+    { value: "Technology", label: "Technology" },
+    { value: "Health", label: "Health" },
 
   ];
   const {
@@ -96,13 +96,13 @@ const AddArticle = () => {
               <option disabled selected>
                 select a publisher
               </option>
-              <option value="daily star">The Daily Star</option>
-              <option value="Prothom">Prothom Alo</option>
-              <option value="bangladesh">Bangladesh Pratidin</option>
-              <option value="financial">The Financial Express</option>
-              <option value="dhaka"> Dhaka Tribune</option>
+              <option value="Daily Star">The Daily Star</option>
+              <option value="Prothom Alo">Prothom Alo</option>
+              <option value="Bangladesh Pratidin">Bangladesh Pratidin</option>
+              <option value="Financial Express">The Financial Express</option>
+              <option value="Dhaka"> Dhaka Tribune</option>
               <option value="kakler_konto"> Kaler Kantho</option>
-              <option value="new_age"> New Age</option>
+              <option value="New_Age"> New Age</option>
 
             </select>
           </label>
@@ -164,7 +164,7 @@ const AddArticle = () => {
         </div>
 
         <div className=" p-3 flex justify-center items-center">
-          <button className="btn btn-wide ">
+          <button className="btn btn-wide btn-outline border-0 border-t-4 ">
             {" "}
             Add Article <RiArticleLine className="text-xl" />{" "}
           </button>

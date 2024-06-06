@@ -1,10 +1,13 @@
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProbider";
+import useAdmin from "../../../Hooks/useAdmin";
 
 const NavBar = () => {
   const { user, logOut } = useContext(AuthContext);
-  console.log(user?.photoURL)
+  // console.log(user?.photoURL)
+  const [isAdmin]=useAdmin()
+  // console.log(isAdmin)
   const handleLogOut = () => {
     logOut()
       .then((result) => {
@@ -54,7 +57,7 @@ const NavBar = () => {
             </NavLink>
 
             <NavLink
-              to="/allArticle"
+              to="/all-Article"
               className={({ isActive }) =>
                 isActive ? " text-cyan-950 underline " : "font-mono  p-2 "
               }
@@ -78,7 +81,8 @@ const NavBar = () => {
             >
               My Articles
             </NavLink>
-            <NavLink
+            {
+              isAdmin &&<NavLink
               to="/dashBoard"
               className={({ isActive }) =>
                 isActive ? " text-cyan-950 underline " : "font-mono  p-2 "
@@ -86,6 +90,7 @@ const NavBar = () => {
             >
               DashBoard
             </NavLink>
+            }
 
             <NavLink
               to="/premium"

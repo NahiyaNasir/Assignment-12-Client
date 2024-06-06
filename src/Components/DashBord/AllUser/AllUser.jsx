@@ -117,7 +117,7 @@ if(res.data.modifiedCount>0){
                       </td>
 
                       <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                        {user.role==='admin'?  <p className="px-6 py-1  text-emerald-500 rounded-full dark:bg-gray-800 bg-indigo-100/60">Admin</p>:<button className="btn rounded-full bg-indigo-100" onClick={()=>handleAdmin(user._id)}>
+                        {user.role ==='admin'?  <p className="px-6 py-1  text-emerald-500 rounded-full dark:bg-gray-800 bg-indigo-100/60">Admin</p>:<button className="btn rounded-full bg-indigo-100" onClick={()=>handleAdmin(user._id)}>
                           Make Admin{" "}
                         </button>}
                       </td>

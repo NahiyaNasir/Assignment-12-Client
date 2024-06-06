@@ -20,7 +20,7 @@ const Home = () => {
     })
     return (
         <div>
-              <div  className=" grid grid-cols-2 gap-6">
+              <div  className=" grid  lg:grid-cols-2 grid-cols-1  gap-6">
 {
     publisher.map(p=><AllPublisher key={p._id} p={p}></AllPublisher>)
 }

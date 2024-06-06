@@ -10,8 +10,11 @@ import SubscriptionPage from "../Components/Pages/SubscriptionPage";
 import DashBoard from "../Components/DashBord/DashBoard";
 import AllUser from "../Components/DashBord/AllUser/AllUser";
 import AddPublisher from "../Components/DashBord/AddPublisher/AddPublisher";
-import AllArticle from "../Components/DashBord/AllArticle.jsx/AllArticle";
+
 import ProtectedRoute from "../Components/Pages/ProtectedRoute/ProtectedRoute";
+import AdminProtected from "../Components/DashBord/AdminRoute/AdminRoute";
+import AllArticlesByUser from "../Components/AllArticle.jsx/AllArticlesByUser";
+import AllArticles from "../Components/DashBord/All Articles/AllArticles";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -29,7 +32,7 @@ const router = createBrowserRouter([
       
       {
         path: "/all-Article",
-        element: <AllArticle></AllArticle>,
+        element:<AllArticlesByUser></AllArticlesByUser> ,
       },
 
       {
@@ -53,19 +56,19 @@ const router = createBrowserRouter([
   },
   {
     path: "dashBoard",
-    element: <DashBoard></DashBoard>,
+    element: <AdminProtected><DashBoard></DashBoard></AdminProtected>,
   },
   {
     path: "allUser",
-    element: <AllUser></AllUser>,
+    element:<AdminProtected> <AllUser></AllUser></AdminProtected>,
   },
   {
     path: "addPublisher",
-    element: <AddPublisher></AddPublisher>,
+    element:<AdminProtected> <AddPublisher></AddPublisher></AdminProtected>,
   },
   {
     path: "/allArticles",
-    element: <AllArticle></AllArticle>,
+    element:<AdminProtected><AllArticles></AllArticles></AdminProtected>,
   },
 ]);
 export default router;

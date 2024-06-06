@@ -1,3 +1,4 @@
+
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { AiOutlineDelete } from "react-icons/ai";
@@ -7,105 +8,99 @@ import { LuCrown } from "react-icons/lu";
 
 import Swal from "sweetalert2";
 
+const AllArticles = () => {
+    const axiosSecure = useAxiosSecure();
+   
+    const { data: allArticles = [], refetch } = useQuery({
+      queryKey: ["allArticles"],
+      queryFn: async () => {
+        const res = await axiosSecure.get("add-article");
+        //   console.log(res.data);
+        return res.data;
+      },
+    });
 
-const AllArticle = () => {
-  const axiosSecure = useAxiosSecure();
 
-  const { data: allArticles = [], refetch } = useQuery({
-    queryKey: ["allArticles"],
-    queryFn: async () => {
-      const res = await axiosSecure.get("add-article");
-      //   console.log(res.data);
-      return res.data;
-    },
-  });
-  
-
-  const handleDelete = (_id) => {
-    // console.log(_id);
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        axiosSecure.delete(`/add-article/${_id}`).then((res) => {
-          console.log(res.data);
-          if (res.data.deletedCount > 0) {
-            refetch();
-            Swal.fire({
-              title: "Deleted!",
-              text: "Your file has been deleted.",
-              icon: "success",
+    const handleDelete = (_id) => {
+        // console.log(_id);
+        Swal.fire({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, delete it!",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            axiosSecure.delete(`/add-article/${_id}`).then((res) => {
+              console.log(res.data);
+              if (res.data.deletedCount > 0) {
+                refetch();
+                Swal.fire({
+                  title: "Deleted!",
+                  text: "Your file has been deleted.",
+                  icon: "success",
+                });
+              }
             });
           }
         });
-      }
-    });
-  };
-  const handleApprove = (_id) => {
-    // console.log(_id);
-    axiosSecure.put(`/add-article/${_id}/approved `).then((res) => {
-      // console.log(res.data);
-      if (res.data.modifiedCount > 0) {
-        refetch();
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "  The Article   is  Approval",
-          showConfirmButton: false,
-          timer: 2000,
+      };
+      const handleApprove = (_id) => {
+        // console.log(_id);
+        axiosSecure.put(`/add-article/${_id}/approved `).then((res) => {
+          // console.log(res.data);
+          if (res.data.modifiedCount > 0) {
+            refetch();
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "  The Article   is  Approval",
+              showConfirmButton: false,
+              timer: 2000,
+            });
+          }
         });
-      }
-    });
-  };
-  const handleMakePremium = (_id) => {
-    // console.log(_id)
-    axiosSecure.put(`/add-article/${_id}/premium`).then((res) => {
-      // console.log(res.data);
-      if (res.data.modifiedCount > 0) {
-        refetch();
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "  The Article   is  premium",
-          showConfirmButton: false,
-          timer: 2000,
+      };
+      const handleMakePremium = (_id) => {
+        // console.log(_id)
+        axiosSecure.put(`/add-article/${_id}/premium`).then((res) => {
+          // console.log(res.data);
+          if (res.data.modifiedCount > 0) {
+            refetch();
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "  The Article   is  premium",
+              showConfirmButton: false,
+              timer: 2000,
+            });
+          }
         });
-      }
-    });
-  };
-  const handleDecline = (_id) => {
-    // console.log(_id);
-  
-    axiosSecure.put(`/add-article/${_id}/decline`).then((res) => {
-      // console.log(res.data);
-      if (res.data.modifiedCount > 0) {
-        
-        
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "  The Article   is decline ",
-          showConfirmButton: false,
-          timer: 2000,
+      };
+      const handleDecline = (_id) => {
+        // console.log(_id);
+    
+        axiosSecure.put(`/add-article/${_id}/decline`).then((res) => {
+          // console.log(res.data);
+          if (res.data.modifiedCount > 0) {
+            // setIsOpen(false);
+            // setDeclineReason('')
+            refetch()
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "  The Article   is decline ",
+              showConfirmButton: false,
+              timer: 2000,
+            });
+          }
         });
-      }
-    });
-  };
-  const handleDeclineReason=(e)=>{
-   
-    const form = new FormData(e.currentTarget);
-    const reason= form.get('reason')
-    console.log(reason)
-  }
-  return (
-    <div>
-      <section className="container px-4 mx-auto my-8">
+      };
+    return (
+        <div>
+   <section className="container px-4 mx-auto my-8">
         <div className="flex items-center gap-x-3">
           <h2 className="text-lg font-medium text-gray-800 dark:text-white">
             All Articles
@@ -209,6 +204,8 @@ const AllArticle = () => {
                         <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                           {article.publisher}
                         </td>
+                      
+
                         <td className="px-4 py-4 text-sm whitespace-nowrap">
                           <div className="flex items-center gap-x-6">
                             <button
@@ -229,36 +226,9 @@ const AllArticle = () => {
                                 <FcApproval className="text-xl" />
                               </button>
                             )}
-                            {article.status == "declined" ? 
-                        
-                         
-// model
-<>
-<button className="btn" onClick={()=>document.getElementById('my_modal_1').showModal()}>open modal</button>
-<dialog id="my_modal_1" className="modal">
-  <div className="modal-box">
-    <h1 className="text-xl font-bold">  Decline Reason</h1>
-   <form onSubmit={()=>handleDeclineReason()}>
-  <div className=" my-8 justify-center items-center flex">
-  <textarea
-           name="reason"
-              className="textarea textarea-accent h-24"
-              placeholder=""
-            ></textarea>
-     
-  </div>
-  <button className=" btn btn-outline"type="submit">Submit</button>
-   </form>
-    <div className="modal-action">
-      <form method="dialog">
-        {/* if there is a button in form, it will close the modal */}
-        <button className="btn">Close</button>
-      </form>
-    </div>
-  </div>
-</dialog>
-</>
-                             : (
+                            {article.status == "declined" ? (
+                            "declined"
+                            ) : (
                               <button
                                 className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500  hover:text-red-500 focus:outline-none"
                                 onClick={() => handleDecline(article._id)}
@@ -289,8 +259,8 @@ const AllArticle = () => {
           </div>
         </div>
       </section>
-    </div>
-  );
+        </div>
+    );
 };
 
-export default AllArticle;
+export default AllArticles;
