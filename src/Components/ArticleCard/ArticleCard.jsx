@@ -43,7 +43,7 @@ const ArticleCard = ({a}) => {
      {description}
     </p>
 
-   <Link to={`/${_id}`}>
+   <Link to={`/articleDetails/${_id}`}>
 
    <a  className="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600">
       Find out more

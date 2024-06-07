@@ -4,25 +4,30 @@ import useAxiosCommon from "../../Hooks/useAxiosCommon";
 import ArticleCard from "../ArticleCard/ArticleCard";
 import { LuFilter } from "react-icons/lu";
 import { useState } from "react";
+import LoadingSpinner from "../Pages/LoadingSpinner/LoadingSpinner";
 
 const AllArticlesByUser = () => {
   const [search, setSearch] = useState("");
-  const [filter, setFilter] = useState("");
+  // const [filter, setFilter] = useState("");
+  const [publisher, setPublisher] = useState("");
+  const [tags, SetTags] = useState("");
   const axiosCommon = useAxiosCommon();
 
-  //   for search
-  const { data: allArticle = [] } = useQuery({
-    queryKey: ["all-article", search,filter],
+  
+  const { data: allArticle = [] ,isLoading} = useQuery({
+    queryKey: ["all-article", search, publisher,tags],
 
     queryFn: async () => {
       const res = await axiosCommon.get(
-        `/all-article-by-search-status-flitter?status=approved&search=${search}&filter=${filter}`
+        `/all-article-by-search-status-flitter?status=approved&search=${search}&publisher=${publisher}&tags=${tags}`
       );
       // console.log(res.data);
       return res.data;
     },
   });
-
+  if(isLoading)
+    return <LoadingSpinner></LoadingSpinner>
+// for search
   const handleSearch = (e) => {
     e.preventDefault();
     const text = e.target.search.value;
@@ -52,12 +57,10 @@ const AllArticlesByUser = () => {
         <div>
           <select
             className="select select-error w-full max-w-xs"
-            onChange={(e) => setFilter(e.target.value)}
-            value={filter}
+            onChange={(e) => setPublisher(e.target.value)}
+            value={publisher}
           >
-            <option defaultValue="">
-              Filter By Publisher &Tags 
-            </option>
+            <option defaultValue="">Filter By Publisher</option>
             <option value="Daily Star">Daily Star</option>
             <option value="Prothom Alo">Prothom Alo</option>
             <option value="Bangladesh Pratidin">Bangladesh Pratidin</option>
@@ -65,10 +68,20 @@ const AllArticlesByUser = () => {
             <option value="Dhaka"> Dhaka Tribune</option>
             <option value="kakler_konto"> Kaler Kantho</option>
             <option value="New_Age"> New Age</option>
+          </select>
+        </div>
+        <div>
+          <select
+            className="select select-error w-full max-w-xs"
+            onChange={(e) => SetTags(e.target.value)}
+            value={tags}
+          >
+            <option defaultValue="">Filter By Tags</option>
+
             <option value="Politics">Politics</option>
             <option value="Sports">Sports</option>
-            <option value="Entertainment">EntertainmentT</option>
-            <option value="Dhaka"> Dhaka Tribune</option>
+            <option value="Entertainment">Entertainment</option>
+
             <option value="Technology"> Technology</option>
             <option value="Health"> Health</option>
           </select>

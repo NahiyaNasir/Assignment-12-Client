@@ -17,8 +17,9 @@ const Login = () => {
         const password = form.get("password");
         console.log(email, password);
         signIn(email, password)
+          // eslint-disable-next-line no-unused-vars
           .then((result) => {
-            console.log(result.user);
+            // console.log(result.user);
             navigate( location?.state?  location.state :'/')
             Swal.fire({
                 title: "User Login Successfully",
@@ -49,8 +50,9 @@ const Login = () => {
     const handleGoogleSignIn=()=>{
     
         signInWithGoogle()
+          // eslint-disable-next-line no-unused-vars
           .then((result) => {
-            console.log(result.user);
+            // console.log(result.user);
             navigate( location?.state?  location.state :'/')
            
             // toast.success('user Login Successfully with Google') 

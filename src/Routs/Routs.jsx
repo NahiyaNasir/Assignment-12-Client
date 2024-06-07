@@ -15,6 +15,7 @@ import ProtectedRoute from "../Components/Pages/ProtectedRoute/ProtectedRoute";
 import AdminProtected from "../Components/DashBord/AdminRoute/AdminRoute";
 import AllArticlesByUser from "../Components/AllArticle.jsx/AllArticlesByUser";
 import AllArticles from "../Components/DashBord/All Articles/AllArticles";
+import ArticleDetails from "../Components/Pages/ArticlesDetails/ArticleDetails";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -39,6 +40,13 @@ const router = createBrowserRouter([
         path: "/myProfile",
         element:<ProtectedRoute> <MyProfile></MyProfile></ProtectedRoute>,
       },
+      
+      {
+        path: "/articleDetails/:id",
+        element:<ProtectedRoute> <ArticleDetails></ArticleDetails></ProtectedRoute>,
+
+      },
+
       {
         path: "/subscribePage",
         element:<ProtectedRoute> <SubscriptionPage></SubscriptionPage></ProtectedRoute>,

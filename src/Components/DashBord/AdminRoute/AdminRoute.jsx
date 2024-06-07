@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProbider";
 import useAdmin from "../../../Hooks/useAdmin";
+import LoadingSpinner from "../../Pages/LoadingSpinner/LoadingSpinner";
 
 
 
@@ -15,9 +16,7 @@ const AdminProtected = ({children}) => {
   const location = useLocation();
 //   console.log(location.pathname);
   if (loading || isPending) {
-    return <div className="flex justify-center items-center mt-6">
-     <progress className="progress w-56"></progress>
-    </div>
+    return <LoadingSpinner></LoadingSpinner>
   }
   if (user && isAdmin) {
     return children;

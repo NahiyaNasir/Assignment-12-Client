@@ -47,7 +47,7 @@ const AddArticle = () => {
             image:res.data.data.display_url,
             tags:data.tags.value,
             publisher:data.publisher,
-            postedDate:new Date(),
+            postedDate:new Date().toLocaleDateString(),
              author_name:user?.displayName,
              author_email:user?.email,
              author_photo:user?.photoURL
