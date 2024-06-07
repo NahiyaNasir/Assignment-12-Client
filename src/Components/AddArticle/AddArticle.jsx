@@ -132,14 +132,7 @@ const AddArticle = () => {
               )}
             ></Controller>
 
-            {/* <Select
-              {...register("tags")}
-              options={options}
-              value={selectedOption}
-              onChange={(selectedOption) => {
-                setSelectedOption(selectedOption);
-              }}
-            /> */}
+            
           </label>
 
           {/* description */}
@@ -164,7 +157,7 @@ const AddArticle = () => {
         </div>
 
         <div className=" p-3 flex justify-center items-center">
-          <button className="btn btn-wide btn-outline border-0 border-t-4 ">
+          <button className="btn btn-wide  border-0 border-b-4 btn-outline hover:bg-[#3061AF] bg-blue-400 ">
             {" "}
             Add Article <RiArticleLine className="text-xl" />{" "}
           </button>

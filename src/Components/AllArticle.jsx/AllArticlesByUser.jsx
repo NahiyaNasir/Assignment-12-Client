@@ -1,22 +1,20 @@
 /* eslint-disable no-unused-vars */
 import { useQuery } from "@tanstack/react-query";
 import useAxiosCommon from "../../Hooks/useAxiosCommon";
-import ArticleCard from "../ArticleCard/ArticleCard";
-import { LuFilter } from "react-icons/lu";
+
+
 import { useState } from "react";
 import LoadingSpinner from "../Pages/LoadingSpinner/LoadingSpinner";
+import ArticleCard from "./ArticleCard/ArticleCard";
 
 const AllArticlesByUser = () => {
   const [search, setSearch] = useState("");
-  // const [filter, setFilter] = useState("");
   const [publisher, setPublisher] = useState("");
   const [tags, SetTags] = useState("");
   const axiosCommon = useAxiosCommon();
 
-  
-  const { data: allArticle = [] ,isLoading} = useQuery({
-    queryKey: ["all-article", search, publisher,tags],
-
+  const { data: allArticle = [], isLoading } = useQuery({
+    queryKey: ["all-article", search, publisher, tags],
     queryFn: async () => {
       const res = await axiosCommon.get(
         `/all-article-by-search-status-flitter?status=approved&search=${search}&publisher=${publisher}&tags=${tags}`
@@ -25,9 +23,8 @@ const AllArticlesByUser = () => {
       return res.data;
     },
   });
-  if(isLoading)
-    return <LoadingSpinner></LoadingSpinner>
-// for search
+  if (isLoading) return <LoadingSpinner></LoadingSpinner>;
+  // for search
   const handleSearch = (e) => {
     e.preventDefault();
     const text = e.target.search.value;

@@ -16,6 +16,7 @@ import AdminProtected from "../Components/DashBord/AdminRoute/AdminRoute";
 import AllArticlesByUser from "../Components/AllArticle.jsx/AllArticlesByUser";
 import AllArticles from "../Components/DashBord/All Articles/AllArticles";
 import ArticleDetails from "../Components/Pages/ArticlesDetails/ArticleDetails";
+import PremiumArticle from "../Components/PrimiumArticles/PremiumArticle";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
       {
         path: "/subscribePage",
         element:<ProtectedRoute> <SubscriptionPage></SubscriptionPage></ProtectedRoute>,
+      },
+      {
+        path: "/premium",
+        element:<ProtectedRoute> <PremiumArticle></PremiumArticle></ProtectedRoute>,
       },
 
       {

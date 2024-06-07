@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import useAxiosCommon from "../../../Hooks/useAxiosCommon";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { MdLibraryAdd } from "react-icons/md";
 const image_hosting_key=import.meta.env. VITE_IMAGE_HOSTING_API
 const image_hosting_api=`https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 const AddPublisher = () => {
@@ -78,10 +79,11 @@ const axiosSecure=useAxiosSecure()
               />
             </div>
 
-            <div className="justify-end">
-              <button className=" btn" type="submit">
+            <div className="justify-end ">
+              <button className=" btn bg-[#34A4CA] rounded-md hover:bg-gray-400" type="submit">
+
                 {" "}
-                Add
+           <MdLibraryAdd className="text-xl" />     Add
               </button>
             </div>
           </div>
