@@ -15,7 +15,7 @@ const Login = () => {
     
         const email = form.get("email");
         const password = form.get("password");
-        console.log(email, password);
+        // console.log(email, password);
         signIn(email, password)
           // eslint-disable-next-line no-unused-vars
           .then((result) => {

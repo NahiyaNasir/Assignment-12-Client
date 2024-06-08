@@ -17,6 +17,9 @@ import AllArticlesByUser from "../Components/AllArticle.jsx/AllArticlesByUser";
 import AllArticles from "../Components/DashBord/All Articles/AllArticles";
 import ArticleDetails from "../Components/Pages/ArticlesDetails/ArticleDetails";
 import PremiumArticle from "../Components/PrimiumArticles/PremiumArticle";
+import MyArticles from "../Components/MyArticles/MyArticles";
+import DashBoardChart from "../Components/DashBord/DashBooardPage/DashBoardChart";
+import UpdateArticle from "../Components/Pages/UpdatePage/UpdateArticle";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -47,6 +50,17 @@ const router = createBrowserRouter([
         element:<ProtectedRoute> <ArticleDetails></ArticleDetails></ProtectedRoute>,
 
       },
+      {
+        path: "/myArticles",
+        element:<ProtectedRoute> <MyArticles></MyArticles></ProtectedRoute>,
+
+      },
+      {
+        path: "/update/:id",
+        element:<ProtectedRoute> <UpdateArticle></UpdateArticle></ProtectedRoute>,
+
+      },
+
 
       {
         path: "/subscribePage",
@@ -71,6 +85,11 @@ const router = createBrowserRouter([
     path: "dashBoard",
     element: <AdminProtected><DashBoard></DashBoard></AdminProtected>,
   },
+  {
+    path: "page",
+    element: <AdminProtected><DashBoardChart></DashBoardChart></AdminProtected>,
+  },
+
   {
     path: "allUser",
     element:<AdminProtected> <AllUser></AllUser></AdminProtected>,

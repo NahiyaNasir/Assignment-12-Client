@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosCommon from "../../Hooks/useAxiosCommon";
 import AllPublisher from "./AllPublisher/AllPublisher";
 import Plan from "./Plane/Plan";
+import Slider from "./Slider/Slider";
 
 
 
@@ -18,9 +19,17 @@ const Home = () => {
           }
          
     })
+    
     return (
         <div>
-              <div  className=" grid  lg:grid-cols-2 grid-cols-1  gap-6">
+            
+            <div>
+                <Slider></Slider>
+        </div>
+
+
+
+              <div  className=" grid  lg:grid-cols-3 grid-cols-1  gap-6">
 {
     publisher.map(p=><AllPublisher key={p._id} p={p}></AllPublisher>)
 }

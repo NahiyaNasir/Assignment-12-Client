@@ -7,10 +7,13 @@ import { RiFileForbidLine } from "react-icons/ri";
 import { LuCrown } from "react-icons/lu";
 
 import Swal from "sweetalert2";
+import Model from "../../Model/Model";
+import { useState } from "react";
 
 const AllArticles = () => {
     const axiosSecure = useAxiosSecure();
-   
+  
+   const[modelOpen,setModalOpen]=useState(false)
     const { data: allArticles = [], refetch } = useQuery({
       queryKey: ["allArticles"],
       queryFn: async () => {
@@ -20,7 +23,9 @@ const AllArticles = () => {
       },
     });
 
-
+    const handleCloseModal = () => {
+      setModalOpen(false);
+  };
     const handleDelete = (_id) => {
         // console.log(_id);
         Swal.fire({
@@ -31,7 +36,8 @@ const AllArticles = () => {
           confirmButtonColor: "#3085d6",
           cancelButtonColor: "#d33",
           confirmButtonText: "Yes, delete it!",
-        }).then((result) => {
+        })
+        .then((result) => {
           if (result.isConfirmed) {
             axiosSecure.delete(`/add-article/${_id}`).then((res) => {
               
@@ -81,6 +87,7 @@ const AllArticles = () => {
       };
       const handleDecline = (_id) => {
         // console.log(_id);
+        setModalOpen(true);
     
         axiosSecure.put(`/add-article/${_id}/decline`).then((res) => {
           // console.log(res.data);
@@ -227,7 +234,7 @@ const AllArticles = () => {
                               </button>
                             )}
                             {article.status == "declined" ? (
-                            "declined"
+                     <Model   onClose={handleCloseModal} modelOpen={modelOpen} ></Model>
                             ) : (
                               <button
                                 className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500  hover:text-red-500 focus:outline-none"

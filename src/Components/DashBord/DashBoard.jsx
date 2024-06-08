@@ -19,7 +19,7 @@ const  DashBoard = () => {
                 href="#"
               >
               <SlGraph />
-                <Link to="page">
+                <Link to="/page">
                   <span className="mx-2 text-sm font-medium">DashBoardPage</span>
                 </Link>
               </a>

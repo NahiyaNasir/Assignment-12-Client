@@ -82,7 +82,7 @@ const NavBar = () => {
               My Articles
             </NavLink>
             {
-              isAdmin &&<NavLink
+              isAdmin && <li><NavLink
               to="/dashBoard"
               className={({ isActive }) =>
                 isActive ? " text-cyan-950 underline " : "font-mono  p-2 "
@@ -90,6 +90,7 @@ const NavBar = () => {
             >
               DashBoard
             </NavLink>
+            </li>
             }
 
             <NavLink

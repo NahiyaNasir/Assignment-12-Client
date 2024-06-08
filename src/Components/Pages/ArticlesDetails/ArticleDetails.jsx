@@ -36,7 +36,7 @@ const ArticleDetails = () => {
       const res = await axiosSecure.patch(
         `/all-articles/${id}`
       );
-    //   console.log(res.data);
+      // console.log(res.data);
       return res.data;
     },
   });

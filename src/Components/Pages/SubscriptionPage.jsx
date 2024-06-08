@@ -3,15 +3,15 @@ import { Link } from "react-router-dom";
 import Select from "react-select";
 
 const SubscriptionPage = () => {
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedOption, setSelectedOption] = useState(1);
   const subscriptionOptions=[
-    { value: "1", label: " 1min" ,price:parseInt("$8")},
-    { value: "5", label: " 5days" ,price:parseInt('$13.99')},
-    { value: "10", label: "10 days",price:parseInt('$19.56') },
+    { value: "1", label: " 1min" ,},
+    { value: "5", label: " 5days" ,},
+    { value: "10", label: "10 days",},
   
   ]
-  const handleSubmit=(price)=>{
-    console.log(price)
+  const handleSubmit=(value)=>{
+    console.log(value)
   }
   
     return (
@@ -24,6 +24,7 @@ const SubscriptionPage = () => {
      
       </h1>
       <Select subscriptionOptions
+      className="text-slate-600"
         options={subscriptionOptions}
         value={selectedOption}
         onChange={setSelectedOption}
@@ -31,7 +32,7 @@ const SubscriptionPage = () => {
 
       <p className="mb-5 text-red-600 font-bold"> !!!Remember If you Subscription Period  Over You Will Be Normal   User Like before </p>
 <Link to="">
-<button className="btn   my-20 btn-outline btn-error" onClick={()=>handleSubmit(subscriptionOptions.price)}>Subscribe</button>
+<button className="btn   my-20 btn-outline btn-error" onClick={()=>handleSubmit(subscriptionOptions.value)}>Subscribe</button>
 </Link>
     </div>
   </div>
