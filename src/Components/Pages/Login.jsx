@@ -3,11 +3,13 @@ import { AuthContext } from "../AuthProvider/AuthProbider";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import useAxiosCommon from "../../Hooks/useAxiosCommon";
 
 
 const Login = () => {
     const {signInWithGoogle,signIn}=useContext(AuthContext)
     const navigate=useNavigate()
+    const axiosCommon=useAxiosCommon()
     const handleLogin = (e) => {
 
         e.preventDefault();
@@ -20,6 +22,10 @@ const Login = () => {
           // eslint-disable-next-line no-unused-vars
           .then((result) => {
             // console.log(result.user);
+           axiosCommon.post("/login",{email:result.user?.email})
+           .then(res=>{
+            console.log(res.data)
+           })
             navigate( location?.state?  location.state :'/')
             Swal.fire({
                 title: "User Login Successfully",
@@ -53,6 +59,12 @@ const Login = () => {
           // eslint-disable-next-line no-unused-vars
           .then((result) => {
             // console.log(result.user);
+           
+            axiosCommon.post("/login",{email:result.user?.email})
+            .then(res=>{
+             console.log(res.data)
+            })
+
             navigate( location?.state?  location.state :'/')
            
             // toast.success('user Login Successfully with Google') 

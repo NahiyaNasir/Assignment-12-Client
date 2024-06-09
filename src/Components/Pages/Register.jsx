@@ -27,7 +27,8 @@ const Register = () => {
       const userInfo={
         name:data.name,
         email:data.email,
-        profile_photo:data.photoURL
+        profile_photo:data.photoURL,
+
       }
        axiosCommon.post('/users',userInfo)
        .then(res=>{

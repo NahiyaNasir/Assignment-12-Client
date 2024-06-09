@@ -1,8 +1,11 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 
+
 const PremiumCard = ({ p }) => {
-//   console.log(p);
+  //   console.log(p);
+
+  
   const { image, article, description, publisher, _id } = p;
   return (
     <div>
@@ -27,7 +30,7 @@ const PremiumCard = ({ p }) => {
         </p>
       </div>
       <Link to={`/articleDetails/${_id}`}>
-        <a className="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-red-400">
+        <button className="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-red-400"disabled>
           Find out more
           <span
             aria-hidden="true"
@@ -35,7 +38,7 @@ const PremiumCard = ({ p }) => {
           >
             &rarr;
           </span>
-        </a>
+        </button>
       </Link>
     </div>
   );

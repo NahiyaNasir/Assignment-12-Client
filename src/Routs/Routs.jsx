@@ -20,6 +20,7 @@ import PremiumArticle from "../Components/PrimiumArticles/PremiumArticle";
 import MyArticles from "../Components/MyArticles/MyArticles";
 import DashBoardChart from "../Components/DashBord/DashBooardPage/DashBoardChart";
 import UpdateArticle from "../Components/Pages/UpdatePage/UpdateArticle";
+import Payment from "../Components/Pages/Payment/Payment";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -66,6 +67,11 @@ const router = createBrowserRouter([
         path: "/subscribePage",
         element:<ProtectedRoute> <SubscriptionPage></SubscriptionPage></ProtectedRoute>,
       },
+      {
+        path: "/payment",
+        element:<ProtectedRoute><Payment></Payment> </ProtectedRoute>,
+      },
+      
       {
         path: "/premium",
         element:<ProtectedRoute> <PremiumArticle></PremiumArticle></ProtectedRoute>,
