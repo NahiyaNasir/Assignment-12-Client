@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Components/AuthProvider/AuthProbider";
 
  const axiosSecure=axios.create({
-    baseURL: "http://localhost:8000"
+    baseURL: "https://assignmenr-12-server.vercel.app"
  })
 const useAxiosSecure = () => {
     const navigate=useNavigate()
@@ -26,7 +26,7 @@ const useAxiosSecure = () => {
   axiosSecure.interceptors.response.use(function(response){
     return response
   },async (error)=>{
-   console.log(error)
+   // console.log(error)
     const status=error.response.status
     console.log(error)
      if(status== 401 || status== 403){

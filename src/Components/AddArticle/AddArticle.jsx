@@ -55,7 +55,7 @@ const AddArticle = () => {
         }
         console.log(addArticle)
         const article =await axiosSecure.post('/add-article',addArticle)
-    console.log(article.data)
+    // console.log(article.data)
     if(article.data.insertedId){
         reset()
         Swal.fire({

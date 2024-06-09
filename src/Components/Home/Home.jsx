@@ -3,6 +3,7 @@ import useAxiosCommon from "../../Hooks/useAxiosCommon";
 import AllPublisher from "./AllPublisher/AllPublisher";
 import Plan from "./Plane/Plan";
 import Slider from "./Slider/Slider";
+import StaticPage from "./Static/StaticPage";
 
 
 
@@ -35,6 +36,9 @@ const Home = () => {
 }
 
              
+              </div>
+              <div>
+                <StaticPage></StaticPage>
               </div>
             <Plan></Plan>
         </div>

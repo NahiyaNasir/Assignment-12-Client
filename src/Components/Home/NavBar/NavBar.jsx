@@ -10,8 +10,9 @@ const NavBar = () => {
   // console.log(isAdmin)
   const handleLogOut = () => {
     logOut()
+      // eslint-disable-next-line no-unused-vars
       .then((result) => {
-        console.log(result.user);
+        // console.log(result.user);
       })
       .catch((error) => console.error(error));
   };

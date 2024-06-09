@@ -10,7 +10,7 @@ import LoadingSpinner from "../../Pages/LoadingSpinner/LoadingSpinner";
 
 const AdminProtected = ({children}) => {
     const [isAdmin,isPending]=useAdmin()
-    console.log(isAdmin)
+    // console.log(isAdmin)
     const { user,  loading } = useContext(AuthContext);
 //   console.log(user);
   const location = useLocation();
