@@ -14,7 +14,7 @@ const AllUser = () => {
   });
   if (isLoading)
     return (
-      <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-blue-600"></div>
+      <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin flex justify-center items-center border-blue-600"></div>
     );
   const handleAdmin=(_id)=>{
     // console.log(_id)
@@ -40,7 +40,7 @@ if(res.data.modifiedCount>0){
         </h2>
 
         <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">
-          {users.length}
+          {users?.length}
         </span>
       </div>
 
@@ -85,7 +85,7 @@ if(res.data.modifiedCount>0){
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
-                  {users.map((user) => (
+                  {users?.map((user) => (
                     <tr key={user._id}>
                       <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                         <div className="inline-flex items-center gap-x-3">

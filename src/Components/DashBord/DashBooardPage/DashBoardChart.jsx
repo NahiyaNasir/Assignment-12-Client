@@ -1,13 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Chart from "react-google-charts";
+import LoadingSpinner from "../../Pages/LoadingSpinner/LoadingSpinner";
 
 
 
 
 const DashBoardChart = () => {
     const axiosSecure=useAxiosSecure()
-    const {data:chartData=[]}=useQuery({
+    const {data:chartData=[],isLoading}=useQuery({
         queryKey:['chartData'],
         queryFn:async()=>{
              const res= await axiosSecure.get('/publication-stats')
@@ -36,8 +37,12 @@ const DashBoardChart = () => {
     curveType: "function",
     legend: { position: "bottom" },
   };
+  if(isLoading)
+    return<LoadingSpinner></LoadingSpinner>
     return (
-        <div className=" flex">
+        <div className=" ">
+<div className="flex">
+
 <div className="w-1/2">
 <Chart
   chartType="PieChart"
@@ -58,7 +63,19 @@ const DashBoardChart = () => {
       data={data}
       options={options2}
     />
-                </div>        
+                </div>  
+    </div> 
+                
+
+                <div>
+                <Chart
+      chartType="AreaChart"
+      width="100%"
+      height="400px"
+      data={data}
+      options={options}
+    />
+                </div>
         </div>
     );
 };

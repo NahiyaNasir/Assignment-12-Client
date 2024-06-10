@@ -5,10 +5,24 @@ import Plan from "./Plane/Plan";
 import Slider from "./Slider/Slider";
 import StaticPage from "./Static/StaticPage";
 import { Typewriter } from "react-simple-typewriter";
+import { useEffect, useState } from "react";
+import Model from "../Model/Model";
+import { Link } from "react-router-dom";
 
 
 
 const Home = () => {
+    const [showModal, setShowModal] = useState(false);
+    useEffect(()=>{
+        const timer = setTimeout(() => {
+            setShowModal(true);
+          }, 10000);
+      
+         
+          return () => clearTimeout(timer);
+  
+         
+    },[])
     const axiosCommon=useAxiosCommon()
     const {data:publisher=[]}=useQuery({
         
@@ -25,10 +39,26 @@ const Home = () => {
     return (
         <div>
             
+    
             <div>
                 <Slider></Slider>
         </div>
-
+        <div className="p-4  w-1/2 bg-base-100">
+            {showModal && (
+        <Model onClose={() => setShowModal(false)}>
+        
+          <p className="text-red-500">Don not miss out on our latest updates.</p>
+          <br />
+          <Link to='/subscribePage'>
+            <p className=" btn btn-wide text-amber-500">Subscribe Now!!!</p>
+          </Link>
+          <br /> <br />
+          <button onClick={() => setShowModal(false)}></button>
+        </Model>
+      )}
+           
+     
+    </div>
         <div className=" text-center text-3xl my-3">
                 <h1
                   style={{

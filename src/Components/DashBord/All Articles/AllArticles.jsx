@@ -7,7 +7,7 @@ import { LuCrown } from "react-icons/lu";
 
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
-import { toast } from "react-toastify";
+
 
 
 const AllArticles = () => {
@@ -19,7 +19,7 @@ const AllArticles = () => {
   } = useForm()
   const onSubmit = async (data) => {
     console.log(data)
-    axiosSecure.put(`/add-article/decline/reason`).then((res) => {
+    axiosSecure.put(`/add-article/reason`).then((res) => {
       // console.log(res.data);
       if (res.data.modifiedCount > 0) {
        

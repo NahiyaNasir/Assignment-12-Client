@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../AuthProvider/AuthProbider";
@@ -21,7 +22,7 @@ const Register = () => {
     // console.log(data);
     createUser(data.email, data.password)
     .then(result=>{
-      console.log(result.user)
+      // console.log(result.user)
       updateUser(data.name, data.photoURL)
      .then(()=>{
       const userInfo={
@@ -32,7 +33,7 @@ const Register = () => {
       }
        axiosCommon.post('/users',userInfo)
        .then(res=>{
-        console.log(res.data)
+        // console.log(res.data)
         if(res.data.insertedId){
           reset()
           Swal.fire({
