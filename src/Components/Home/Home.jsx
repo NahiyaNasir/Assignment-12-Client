@@ -8,6 +8,8 @@ import { Typewriter } from "react-simple-typewriter";
 import { useEffect, useState } from "react";
 import Model from "../Model/Model";
 import { Link } from "react-router-dom";
+import Review from "./Testomonial/Review";
+import ExtraSection from "./Extra Sction/ExtraSection";
 
 
 
@@ -114,6 +116,12 @@ const Home = () => {
                 </h1>
               </div>
             <Plan></Plan>
+         <div>
+            <Review></Review>
+         </div>
+         <div>
+            <ExtraSection></ExtraSection>
+         </div>
         </div>
     );
 };
