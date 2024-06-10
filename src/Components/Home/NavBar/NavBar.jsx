@@ -5,7 +5,7 @@ import useAdmin from "../../../Hooks/useAdmin";
 
 const NavBar = () => {
   const { user, logOut } = useContext(AuthContext);
-  // console.log(user?.photoURL)
+  // console.log(user)
   const [isAdmin]=useAdmin()
   // console.log(isAdmin)
   const handleLogOut = () => {
@@ -20,7 +20,7 @@ const NavBar = () => {
     <div className="navbar h-16">
       <div className="navbar-start">
         <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden  bg-slate-600">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -38,136 +38,137 @@ const NavBar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 z-50"
           >
             <NavLink
               to="/"
               className={({ isActive }) =>
-                isActive ? " text-cyan-900 underline " : "font-mono p-2 "
+                isActive ? " text-cyan-900 underline " : "font-semibold p-2 "
               }
             >
               Home
             </NavLink>
-            <NavLink
+            { user && <NavLink
               to="/addArticle"
               className={({ isActive }) =>
-                isActive ? " text-cyan-950 underline " : "font-mono  p-2 "
+                isActive ? " text-cyan-950 underline " : "font-semibold  p-2 "
               }
             >
-              Add Article
-            </NavLink>
+          Add    Article
+            </NavLink>}
 
             <NavLink
               to="/all-Article"
               className={({ isActive }) =>
-                isActive ? " text-cyan-950 underline " : "font-mono  p-2 "
+                isActive ? " text-cyan-950 underline " : "font-semibold  p-2 "
               }
             >
               All Article
             </NavLink>
 
-            <NavLink
+            { user &&<NavLink
               to="/subscribe"
               className={({ isActive }) =>
-                isActive ? " text-cyan-950 underline " : "font-mono  p-2 "
+                isActive ? " text-cyan-950 underline " : "font-semibold  p-2 "
               }
             >
               Subscription
-            </NavLink>
-            <NavLink
+            </NavLink>}
+           { user && <NavLink
               to="/myArticles"
               className={({ isActive }) =>
-                isActive ? " text-cyan-950 underline " : "font-mono  p-2 "
+                isActive ? " text-cyan-950 underline " : "font-semibold  p-2 "
               }
             >
               My Articles
-            </NavLink>
+            </NavLink>}
+
             {
-              isAdmin && <li><NavLink
+             user &&  isAdmin && <li><NavLink
               to="/dashBoard"
               className={({ isActive }) =>
-                isActive ? " text-cyan-950 underline " : "font-mono  p-2 "
-              }
+                isActive ? " text-cyan-950 underline " : "font-semibold  p-2 "
+            }
             >
               DashBoard
             </NavLink>
             </li>
             }
 
-            <NavLink
+            { user &&<NavLink
               to="/premium"
               className={({ isActive }) =>
-                isActive ? " text-cyan-950 underline " : "font-mono p-2 "
+                isActive ? " text-cyan-950 underline " : "font-semibold p-2 "
               }
             >
               Premium Articles
-            </NavLink>
+            </NavLink>}
           </ul>
         </div>
         <a className=" text-xl text-blue-800">The Intercept </a>
       </div>
-      <div className="navbar-center hidden lg:flex">
+      <div className="navbar-center hidden lg:flex z-50 ">
         <ul className="menu menu-horizontal px-1">
           <NavLink
             to="/"
             className={({ isActive }) =>
-              isActive ? " text-cyan-900 underline " : "font-mono p-2 "
+              isActive ? " text-cyan-900 underline " : "font-semibold p-2 "
             }
           >
             Home
           </NavLink>
 
-          <NavLink
+         { user&& <NavLink
             to="/addArticle"
             className={({ isActive }) =>
-              isActive ? " text-cyan-950 underline " : "font-mono  p-2 "
+              isActive ? " text-cyan-950 underline " : "font-semibold  p-2 "
             }
           >
             Add Article
-          </NavLink>
+          </NavLink>}
 
           <NavLink
             to="/all-Article"
             className={({ isActive }) =>
-              isActive ? " text-cyan-950 underline " : "font-mono  p-2 "
+              isActive ? " text-cyan-950 underline " : "font-semibold  p-2 "
             }
           >
             All Article
           </NavLink>
-          <NavLink
+         {  user&&<NavLink
             to="/subscribePage"
             className={({ isActive }) =>
-              isActive ? " text-cyan-950 underline " : "font-mono  p-2 "
+              isActive ? " text-cyan-950 underline " : "font-semibold  p-2 "
             }
           >
             Subscription
-          </NavLink>
-          <NavLink
+          </NavLink>}
+        { user&& <NavLink
             to="/myArticles"
             className={({ isActive }) =>
-              isActive ? " text-cyan-950 underline " : "font-mono  p-2 "
+              isActive ? " text-cyan-950 underline " : "font-semibold  p-2 "
             }
           >
             My Articles
-          </NavLink>
+          </NavLink>}
 
-          <NavLink
+         { user&& isAdmin&& <NavLink
             to="/dashBoard"
             className={({ isActive }) =>
-              isActive ? " text-cyan-950 underline " : "font-mono  p-2 "
+              isActive ? " text-cyan-950 underline " : "font-semibold  p-2 "
             }
           >
             DashBoard
-          </NavLink>
+          </NavLink>}
 
-          <NavLink
+          { user&&<NavLink
             to="/premium"
             className={({ isActive }) =>
-              isActive ? " text-cyan-950 underline " : "font-mono  p-2 "
+              isActive ? " text-cyan-950 underline " : "font-semibold  p-2 "
             }
           >
             Premium Articles
-          </NavLink>
+          </NavLink>}
         </ul>
       </div>
       <div className="navbar-end">

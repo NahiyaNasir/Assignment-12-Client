@@ -96,8 +96,10 @@ const MyArticles = () => {
                         </td>
                         <td className="p-3">
                  
-                        { m.status?     <p className="text-orange-500 uppercase">{m.status}</p> : <p className="text-slate-800">Pending</p>  }
+                        { m.status ?     <p className="text-orange-500 uppercase">{m.status}</p> : <p className="text-slate-800">Pending</p>  }
+                       
                         </td>
+                        
                        
                         <td className="p-3">
                  

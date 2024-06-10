@@ -30,8 +30,7 @@ const PremiumCard = ({ p }) => {
         </p>
       </div>
       <Link to={`/articleDetails/${_id}`}>
-        <button className="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-red-400"disabled>
-          Find out more
+        <button className="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-red-400">
           <span
             aria-hidden="true"
             className="block transition-all group-hover:ms-0.5 rtl:rotate-180"
