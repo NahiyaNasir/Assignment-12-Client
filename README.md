@@ -7,7 +7,9 @@ This  newspaper website is a digital platform that offers a comprehensive and up
 
  # Project Live Link URL
 
-https://assigment-12-client.web.app/
+   [LiveServer](https://assigment-12-client.web.app/)
+
+
 
 
 
@@ -30,3 +32,39 @@ Admin email:noha@gmail.com
 Password:123456Qa@
 
 Admin Name:Mohanie
+
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/NahiyaNasir/The-Intercept.git
+```
+
+Go to the project directory
+
+```bash
+  cd The Intercept
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm run start
+```
+
+
+## Deployment
+
+To deploy this project run
+
+```bash
+  npm run build
+```
+
