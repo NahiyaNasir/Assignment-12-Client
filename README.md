@@ -33,6 +33,16 @@ Password:123456Qa@
 
 Admin Name:Mohanie
 
+##npm packages
+
+react-countup
+
+ react-google-chart
+ 
+ react-select
+ 
+ react-hook-form
+ 
 ## Run Locally
 
 Clone the project
